@@ -1,0 +1,45 @@
+#General aliases
+alias ll='ls -la'
+alias la='ls -la -A'
+alias lc='colorls --sd -l'
+alias lca='colorls --sd -l -A'
+alias -g G='| grep -i'
+alias lg='lazygit'
+alias be='bundle exec'
+
+alias cs="gh copilot suggest"
+alias ce="gh copilot explain"
+alias cf="gh copilot fix"
+
+# Enable history substring search
+autoload -Uz history-search-end
+zstyle ':completion:*' menu select
+bindkey '^[[A' history-search-backward
+bindkey '^[[B' history-search-forward
+
+autoload -Uz compinit && compinit
+
+# Load version control information
+autoload -Uz vcs_info
+precmd() { vcs_info }
+
+# Format the vcs_info_msg_0_ variable
+zstyle ':vcs_info:git:*' formats '(%b)'
+
+# Set up the prompt (with git branch name)
+setopt PROMPT_SUBST
+PROMPT='%/ %F{green}${vcs_info_msg_0_}%F %F{white}# '
+
+# Initialize rbenv
+eval "$(rbenv init - zsh)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completionexport PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+
+#PostgreSQL
+export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+
+eval "$(starship init zsh)"
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/sbin:$PATH"
