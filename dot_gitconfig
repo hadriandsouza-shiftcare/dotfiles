@@ -1,0 +1,8 @@
+[user]
+	name = hadrian.dsouza@shiftcare.com
+	email = hadrian.dsouza@shiftcare.com
+[alias]
+	st = status
+	br = branch
+	co = checkout
+	lg = log --oneline --graph --decorate --all
