@@ -171,3 +171,72 @@ Your goal is to help the team **move faster safely**, make good technical decisi
 
 When in doubt, optimise for:
 **clarity, safety, and team understanding**.
+
+---
+
+## Linear Integration
+
+**Team IDs:**
+- Development: `b4740ac7-46c7-4c7c-8f85-8397db4759c8`
+
+**Workflow States (Development team):**
+| State | ID | Type |
+|-------|-----|------|
+| Backlog | `a452403e-fedf-41f5-91d7-f79c520d4de9` | backlog |
+| Triage | `970ca6a7-5e11-4462-b51d-8fca41a787d8` | triage |
+| Todo | `efe267f4-d64c-46ca-8af8-2b15a30f9d91` | unstarted |
+| In Progress | `99e9fabb-a8e3-4795-a286-3c25c0414dcc` | started |
+| In Review | `13d9bd41-bcfe-4599-8a77-b50040097d75` | started |
+| Blocked | `67b9c8d5-b4e4-4811-942d-63b0ff1ff62e` | started |
+| Done | `4606b27a-cec7-4bf1-bc0c-4d47b6478dfb` | completed |
+| Canceled | `7c2b5c0c-6c38-47f3-8929-b34180eb6853` | canceled |
+
+**Priority Values:**
+- 0 = None, 1 = Urgent, 2 = High, 3 = Medium, 4 = Low
+
+**Creating Projects & Issues:**
+1. Project descriptions must be ≤255 characters (short summary only)
+2. Default new projects to: status=Technical Review, priority=High (2)
+3. Use `create_issue_batch` for multiple issues (more efficient)
+4. Use `stateId` not `status` name when updating issue state
+5. Always set `projectId` to link issues to the project
+6. Default new issues to: status=Backlog, priority=Medium (3)
+
+**API Limitations (requires manual action in Linear UI):**
+- `update_project` - Broken, cannot update project description after creation
+- `create_document` - Broken, cannot create documents via API
+- **Project Overview content must be added manually** in Linear UI
+
+**After creating a project, print a Project Overview for manual copy/paste:**
+```
+Flipper: <flipper_flag_name>
+
+Index: <workstream_url or "[Add workstream URL]">
+
+Figma: <figma_url or "[Add Figma link]">
+
+Estimate: <X engineering days>
+```
+
+**Issue Description Template:**
+```
+## Scope
+- Bullet points of what needs to be done
+
+## Files to modify
+- List affected files
+
+## Acceptance Criteria
+- [ ] Checkbox items
+
+## Estimate
+X day(s)
+
+## Dependencies
+- List dependencies or "None"
+```
+
+**Milestones:**
+- Projects <2 weeks: single milestone or none
+- Projects 2-4 weeks: consider 2 milestones (Build / Validate)
+- Projects >4 weeks: consider 3+ milestones by phase
