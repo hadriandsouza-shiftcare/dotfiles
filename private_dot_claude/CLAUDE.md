@@ -223,14 +223,8 @@ Estimate: <X engineering days>
 ## Scope
 - Bullet points of what needs to be done
 
-## Files to modify
-- List affected files
-
 ## Acceptance Criteria
 - [ ] Checkbox items
-
-## Estimate
-X day(s)
 
 ## Dependencies
 - List dependencies or "None"
