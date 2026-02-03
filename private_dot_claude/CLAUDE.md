@@ -207,15 +207,15 @@ When in doubt, optimise for:
 - `create_document` - Broken, cannot create documents via API
 - **Project Overview content must be added manually** in Linear UI
 
-**After creating a project, print a Project Overview for manual copy/paste:**
-```
-Flipper: <flipper_flag_name>
+**After creating a project, print a Project Overview in Markdown format for manual copy/paste:**
+```markdown
+**Flipper:** `<flipper_flag_name>`
 
-Index: <workstream_url or "[Add workstream URL]">
+**Index:** [Workstream](<workstream_url>) or "[Add workstream URL]"
 
-Figma: <figma_url or "[Add Figma link]">
+**Figma:** [Design](<figma_url>) or "[Add Figma link]"
 
-Estimate: <X engineering days>
+**Estimate:** <X engineering days>
 ```
 
 **Issue Description Template:**
@@ -234,3 +234,82 @@ Estimate: <X engineering days>
 - Projects <2 weeks: single milestone or none
 - Projects 2-4 weeks: consider 2 milestones (Build / Validate)
 - Projects >4 weeks: consider 3+ milestones by phase
+
+---
+
+## Project Planning Skill
+
+**Trigger:** "Plan for a project [NAME] with product spec [CONTENT]"
+
+When this phrase is used:
+
+1. **Enter planning mode** - Do NOT make any code changes yet
+2. **Explore the codebase** to understand relevant existing patterns, models, and architecture
+3. **Create a plan file** at `.ai/plans/YYYY-MM-DD-[project-name]-plan.md`
+
+### Plan Structure
+
+The plan file should follow this structure:
+
+```
+# [Project Name] - Implementation Plan
+
+## 1. Objective
+Single paragraph summarizing what we're building and why.
+
+## 2. Scope
+
+### In Scope
+- Bullet list of what's included
+
+### Out of Scope
+- Bullet list of what's explicitly excluded
+
+## 3. Questions for Product
+- [ ] Unanswered questions that need clarification before implementation
+- [ ] Edge cases that need product input
+
+## 4. Data Model Changes
+- New models/tables
+- Schema changes to existing models
+- Migrations required (with safety notes)
+
+## 5. Solution Architecture
+- High-level approach
+- Key components and their responsibilities
+- Mermaid diagrams where helpful (sequence, ERD, component)
+
+## 6. Corner Cases & Edge Scenarios
+- List of edge cases to handle
+- Error states and how to handle them
+- Multi-tenancy considerations
+
+## 7. End-to-End Scenarios
+Describe user flows from start to finish:
+1. Happy path
+2. Error/failure paths
+3. Edge case flows
+
+## 8. Milestones & Issues
+
+### Milestone 1: [Name]
+| Issue | Description | Estimate |
+|-------|-------------|----------|
+| Issue 1 | ... | S/M/L |
+
+### Milestone 2: [Name]
+...
+```
+
+### Planning Guidelines
+- Keep issues small (~400 lines max, ideally <200)
+- Each issue should be independently deployable where possible
+- Group related work into milestones (2-4 weeks each)
+- Use T-shirt sizing (S=1-2 days, M=3-4 days, L=5+ days)
+- Flag any issues that need pairing or review gates
+
+### After Creating Plan
+1. Open the plan file in Cursor: `open -a "Cursor" <plan-file-path>`
+2. Ask user to review the plan
+3. Highlight any blockers or questions that need answers before starting
+4. Do NOT proceed to implementation until plan is approved
